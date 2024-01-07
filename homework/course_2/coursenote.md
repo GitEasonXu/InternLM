@@ -98,3 +98,42 @@ cd homework/course_2
 streamlit run lagent_demo.py --server.address 127.0.0.1 --server.port 6006
 ```
 
+![lagent_backbend](images/lagent_backbend.png)
+
+![lagent](images/lagent.png)
+
+在进行求解时会自动调用python解释器进行求解。
+
+#### 3.4 多模态演示
+
+具体环境配置参考官网[4.1 环境准备](https://github.com/InternLM/tutorial/blob/main/helloworld/hello_world.md#41-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87)
+
+```bash
+cd /root/code/InternLM-XComposer
+python examples/web_demo.py  \
+    --folder /root/model/Shanghai_AI_Laboratory/internlm-xcomposer-7b \
+    --num_gpus 1 \
+    --port 6006
+```
+
+![multimodel](images/multimodel.png)
+
+
+
+### 附录
+
+- `ssh -CNg -L 6006:127.0.0.1:6006 root@ssh.intern-ai.org.cn -p xxxx`使用文心一言进行解释
+
+  这条命令是一个SSH命令，用于在Linux或Unix系统上建立一个SSH隧道。我们可以逐一解析这条命令的各个部分：
+
+  1. `ssh`: 这是SSH客户端命令，用于建立SSH连接。
+  2. `-C`: 这个选项告诉SSH压缩传输的数据，以便加速数据传输。
+  3. `-N`: 这个选项表示不执行远程命令，仅建立一个隧道。
+  4. `-g`: 这个选项允许其他机器连接到此隧道，而不是仅允许源主机进行连接。
+  5. `-L 6006:127.0.0.1:6006`: 这部分定义了一个本地端口转发。它将本地机器上的6006端口转发到远程机器上的6006端口。换句话说，任何发送到本地机器6006端口的流量都会被转发到远程机器的6006端口。
+  6. `root@ssh.intern-ai.org.cn`: 这部分指定了SSH连接的用户和目标主机。这里使用的是root用户连接到`ssh.intern-ai.org.cn`这个主机。
+  7. `-p 337xx`: 这部分指定了SSH连接的端口号，这里是337xx端口。
+
+  综上所述，这条命令的意思是：使用root用户在本地机器和`ssh.intern-ai.org.cn`主机之间建立一个SSH隧道，将本地机器的6006端口转发到远程机器的6006端口，并使用SSH协议的337xx端口进行连接。
+
+  
