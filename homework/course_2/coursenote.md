@@ -58,35 +58,36 @@ huggingface-cli download --resume-download internlm/internlm-chat-7b --local-dir
 
 #### 3.1 InternLM对话机器人-终端演示
 
-```python
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+```bash
+cd homework/course_2
+python terminal_demo.py
+```
 
-## 指定模型路径
-model_name_or_path = "/root/model/Shanghai_AI_Laboratory/internlm-chat-7b"
+#### 3.2 InternLM对话机器人-Web演示
 
-## 加载模型tokenizer和模型
-tokenizer = AutoTokenizer.from_pretrained(model_name_or_path, trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained(model_name_or_path, trust_remote_code=True, torch_dtype=torch.bfloat16, device_map='auto')
-## 将模型设置为推理模式
-model = model.eval()
+```bash
+cd homework/course_2
+streamlit run web_demo.py --server.address 127.0.0.1 --server.port 6006
+```
 
-system_prompt = """You are an AI assistant whose name is InternLM (书生·浦语).
-- InternLM (书生·浦语) is a conversational language model that is developed by Shanghai AI Laboratory (上海人工智能实验室). It is designed to be helpful, honest, and harmless.
-- InternLM (书生·浦语) can understand and communicate fluently in the language chosen by the user such as English and 中文.
-"""
+![故事](images/故事.png)
 
-messages = [(system_prompt, '')]
+#### 3.3 Lagent演示
 
-print("=============Welcome to InternLM chatbot, type 'exit' to exit.=============")
+##### 3.3.1 代码准备
 
-while True:
-    input_text = input("User  >>> ")
-    input_text = input_text.replace(' ', '')
-    if input_text == "exit":
-        break
-    response, history = model.chat(tokenizer, input_text, history=messages)
-    messages.append((input_text, response))
-    print(f"robot >>> {response}")
+```bash
+cd homework/course_2
+git clone https://gitee.com/internlm/lagent.git
+cd lagent
+git checkout 511b03889010c4811b1701abb153e02b8e94fb5e
+pip install -e .
+```
+
+##### 3.3.2 运行代码
+
+```bash
+cd homework/course_2
+streamlit run lagent_demo.py --server.address 127.0.0.1 --server.port 6006
 ```
 
