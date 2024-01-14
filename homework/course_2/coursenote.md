@@ -27,11 +27,11 @@ pip install streamlit==1.24.0
 pip install sentencepiece==0.1.99
 pip install accelerate==0.24.1
 
-timm==0.4.12
-gradio==3.44.4 
-markdown2==2.4.10 
-xlsxwriter==3.1.2 
-einops 
+pip install timm==0.4.12
+pip install gradio==3.44.4 
+pip install markdown2==2.4.10 
+pip install xlsxwriter==3.1.2 
+pip install einops 
 
 ```
 
